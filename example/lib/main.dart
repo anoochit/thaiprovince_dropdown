@@ -30,8 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final ThaiProvincesDropdownController thaiProvincesController =
-      ThaiProvincesDropdownController();
+  final controller = ThaiProvincesDropdownController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,14 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //
-            Text('province = ${thaiProvincesController.provinceId}'),
-            Text('district = ${thaiProvincesController.amphureId}'),
-            Text('subdistrict = ${thaiProvincesController.tambonId}'),
-            Text('zipcoce = ${thaiProvincesController.zipcode}'),
+            Text('province = ${controller.provinceId}'),
+            Text('district = ${controller.amphureId}'),
+            Text('subdistrict = ${controller.tambonId}'),
+            Text('zipcoce = ${controller.zipcode}'),
             SizedBox(height: 4.0),
             //
             ThaiProvincesDropdown(
-              controller: thaiProvincesController,
+              controller: controller,
               direction: Axis.vertical,
               width: 280.0,
               padding: EdgeInsets.all(4.0),
