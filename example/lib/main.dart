@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             ThaiProvincesDropdown(
               controller: controller,
-              direction: Axis.horizontal,
+              direction: Axis.vertical,
               width: 280.0,
               padding: EdgeInsets.all(4.0),
               locale: Locale('th', 'TH'),

@@ -72,6 +72,8 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
         // province
         DropdownButton<int>(
           menuWidth: widget.width,
+          hint: Text(_localeTH ? "จังหวัด" : "Province"),
+
           value: widget.controller.provinceId,
           items:
               _provinces
@@ -87,6 +89,7 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
             setState(() {
               widget.controller.provinceId = value;
               widget.controller.amphureId = null;
+              widget.controller.tambonId = null;
               _amphuresDropdown =
                   _amphures.where((p) => (p.provinceId == value)).toList();
             });
@@ -95,6 +98,8 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
 
         // amphure
         DropdownButton<int>(
+          menuWidth: widget.width,
+          hint: Text(_localeTH ? "เขต/อำเภอ" : "District"),
           value: widget.controller.amphureId,
           items:
               _amphuresDropdown
@@ -118,6 +123,8 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
 
         // tambol
         DropdownButton<int>(
+          menuWidth: widget.width,
+          hint: Text(_localeTH ? "ตำบล" : "Subdistrict"),
           value: widget.controller.tambonId,
           items:
               _tambonsDropdown
