@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final controller = ThaiProvincesDropdownController();
+  final controller = ThaiProvincesController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             ThaiProvincesDropdown(
               controller: controller,
-              direction: Axis.vertical,
+              direction: Axis.horizontal,
               width: 280.0,
               padding: EdgeInsets.all(4.0),
-              locale: Locale('en', 'US'),
+              locale: Locale('th', 'TH'),
             ),
             SizedBox(height: 4.0),
             //
