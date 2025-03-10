@@ -9,7 +9,12 @@ import 'models/thai_amphures.dart';
 import 'models/thai_provinces.dart';
 import 'models/thai_tambons.dart';
 
+/// A widget that provides a set of dropdown menus for selecting a Thai province,
+/// district (amphure), and subdistrict (tambon).
 class ThaiProvincesDropdownMenu extends StatefulWidget {
+  /// Creates a [ThaiProvincesDropdownMenu] widget.
+  ///
+  /// [padding], [locale], [controller], and [direction] must not be null.
   const ThaiProvincesDropdownMenu({
     super.key,
     required this.padding,
@@ -19,10 +24,19 @@ class ThaiProvincesDropdownMenu extends StatefulWidget {
     required this.direction,
   });
 
+  /// The padding around each dropdown menu.
   final EdgeInsets padding;
+
+  /// The width of each dropdown menu.
   final double width;
+
+  /// The current locale, used to determine the language for labels (Thai or English).
   final Locale locale;
+
+  /// The controller to manage the selected province, district, subdistrict, and zipcode.
   final ThaiProvincesController controller;
+
+  /// The direction in which the dropdown menus should be arranged (horizontal or vertical).
   final Axis direction;
 
   @override
@@ -44,7 +58,7 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
   void initState() {
     super.initState();
     // check locale
-    _localeTH = (widget.locale == Locale('th', 'TH'));
+    _localeTH = (widget.locale == const Locale('th', 'TH'));
     // load asset data
     _loadAssets();
   }
@@ -57,11 +71,10 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
         // province
         Padding(
           padding: widget.padding,
-          child: DropdownMenu(
+          child: DropdownMenu<int>(
             enableSearch: false,
             width: widget.width,
             hintText: (_localeTH) ? 'จังหวัด' : 'Province',
-
             dropdownMenuEntries:
                 _provinces
                     .map(
@@ -71,16 +84,23 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
                       ),
                     )
                     .toList(),
-            onSelected: (value) {
-              widget.controller.provinceId = value!;
-              setState(() {
-                _amphuresDropdown =
-                    _amphures
-                        .where(
-                          (p) => (p.provinceId == widget.controller.provinceId),
-                        )
-                        .toList();
-              });
+            onSelected: (int? value) {
+              if (value != null) {
+                widget.controller.provinceId = value;
+                widget.controller.amphureId = null; // reset amphure
+                widget.controller.tambonId = null; // reset tambon
+                widget.controller.zipcode = null; //reset zipcode
+                setState(() {
+                  _amphuresDropdown =
+                      _amphures
+                          .where(
+                            (p) =>
+                                (p.provinceId == widget.controller.provinceId),
+                          )
+                          .toList();
+                  _tambonsDropdown.clear();
+                });
+              }
             },
           ),
         ),
@@ -88,7 +108,7 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
         // amphure
         Padding(
           padding: widget.padding,
-          child: DropdownMenu(
+          child: DropdownMenu<int>(
             width: widget.width,
             hintText: (_localeTH) ? 'อำเภอ' : 'District',
             dropdownMenuEntries:
@@ -100,17 +120,20 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
                       ),
                     )
                     .toList(),
-
-            onSelected: (value) {
-              widget.controller.amphureId = value!;
-              setState(() {
-                _tambonsDropdown =
-                    _tambons
-                        .where(
-                          (p) => (p.amphureId == widget.controller.amphureId),
-                        )
-                        .toList();
-              });
+            onSelected: (int? value) {
+              if (value != null) {
+                widget.controller.amphureId = value;
+                widget.controller.tambonId = null; // reset tambon
+                widget.controller.zipcode = null; //reset zipcode
+                setState(() {
+                  _tambonsDropdown =
+                      _tambons
+                          .where(
+                            (p) => (p.amphureId == widget.controller.amphureId),
+                          )
+                          .toList();
+                });
+              }
             },
           ),
         ),
@@ -118,7 +141,7 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
         // district
         Padding(
           padding: widget.padding,
-          child: DropdownMenu(
+          child: DropdownMenu<int>(
             width: widget.width,
             hintText: (_localeTH) ? 'ตำบล' : 'Subdistrict',
             dropdownMenuEntries:
@@ -130,10 +153,12 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
                       ),
                     )
                     .toList(),
-            onSelected: (value) {
-              widget.controller.tambonId = value!;
-              widget.controller.zipcode =
-                  _tambons.firstWhere((p) => (p.id == value)).zipCode!;
+            onSelected: (int? value) {
+              if (value != null) {
+                widget.controller.tambonId = value;
+                widget.controller.zipcode =
+                    _tambons.firstWhere((p) => (p.id == value)).zipCode!;
+              }
             },
           ),
         ),
@@ -141,6 +166,7 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
     );
   }
 
+  /// Loads the Thai province, district, and subdistrict data from the asset files.
   Future<void> _loadAssets() async {
     log('load asset');
     final result = await Future.wait([

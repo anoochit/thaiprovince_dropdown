@@ -7,7 +7,12 @@ import 'package:thai_province/src/models/thai_provinces.dart';
 import 'package:thai_province/src/models/thai_tambons.dart';
 import 'package:thai_province/src/thai_province_controller.dart';
 
+/// A widget that provides a dropdown menu for selecting Thai provinces,
+/// districts (amphures), and subdistricts (tambons).
 class ThaiProvincesDropdown extends StatefulWidget {
+  /// Creates a [ThaiProvincesDropdown] widget.
+  ///
+  /// The [padding], [locale], [controller], and [direction] arguments must not be null.
   const ThaiProvincesDropdown({
     super.key,
     required this.padding,
@@ -17,10 +22,19 @@ class ThaiProvincesDropdown extends StatefulWidget {
     required this.direction,
   });
 
+  /// The padding around each dropdown button.
   final EdgeInsets padding;
+
+  /// The width of each dropdown button.
   final double width;
+
+  /// The current locale, used to display labels in Thai or English.
   final Locale locale;
+
+  /// The controller to manage the selected province, district, and subdistrict.
   final ThaiProvincesController controller;
+
+  /// The axis along which the dropdown buttons are arranged.
   final Axis direction;
 
   @override
@@ -41,11 +55,12 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
   void initState() {
     super.initState();
     // check locale
-    _localeTH = (widget.locale == Locale('th', 'TH'));
+    _localeTH = (widget.locale == const Locale('th', 'TH'));
     // load asset data
     _loadAssets();
   }
 
+  /// Loads the Thai province, district, and subdistrict data from assets.
   Future<void> _loadAssets() async {
     log('load asset');
     final result = await Future.wait([
@@ -73,7 +88,6 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
         DropdownButton<int>(
           menuWidth: widget.width,
           hint: Text(_localeTH ? "จังหวัด" : "Province"),
-
           value: widget.controller.provinceId,
           items:
               _provinces
