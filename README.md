@@ -20,13 +20,13 @@ The underlying data for provinces, districts, subdistricts, and zip codes is sou
 
 1.  **Add Dependency:**
 
-    Add `thai_province` to your `pubspec.yaml` file:
+    Add `thai_province_dropdown` to your `pubspec.yaml` file:
 
     ```yaml
     dependencies:
       flutter:
         sdk: flutter
-      thai_province: ^0.0.1 
+      thai_province_dropdown: ^0.0.1 
     ```
 
     Then run:
@@ -37,7 +37,7 @@ The underlying data for provinces, districts, subdistricts, and zip codes is sou
 2.  **Import:**
 
     ```dart
-    import 'package:thai_province/thai_province.dart';
+    import 'package:thai_province_dropdown/thai_province.dart';
     ```
 
 3.  **Create a Controller:**

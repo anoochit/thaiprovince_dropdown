@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:thai_province/src/thai_province_controller.dart';
 
+import '../thai_province.dart';
 import 'models/thai_amphures.dart';
 import 'models/thai_provinces.dart';
 import 'models/thai_tambons.dart';

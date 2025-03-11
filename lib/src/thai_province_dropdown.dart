@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:thai_province/src/models/thai_amphures.dart';
-import 'package:thai_province/src/models/thai_provinces.dart';
-import 'package:thai_province/src/models/thai_tambons.dart';
-import 'package:thai_province/src/thai_province_controller.dart';
+
+import 'models/thai_amphures.dart';
+import 'models/thai_provinces.dart';
+import 'models/thai_tambons.dart';
+import 'thai_province_controller.dart';
 
 /// A widget that provides a dropdown menu for selecting Thai provinces,
 /// districts (amphures), and subdistricts (tambons).
