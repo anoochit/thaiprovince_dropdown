@@ -170,10 +170,14 @@ class _ThaiProvincesDropdownMenuState extends State<ThaiProvincesDropdownMenu> {
   Future<void> _loadAssets() async {
     log('load asset');
     final result = await Future.wait([
-      rootBundle.loadString('packages/thai_province/assets/thai_tambons.json'),
-      rootBundle.loadString('packages/thai_province/assets/thai_amphures.json'),
       rootBundle.loadString(
-        'packages/thai_province/assets/thai_provinces.json',
+        'packages/thai_province_dropdown/assets/thai_tambons.json',
+      ),
+      rootBundle.loadString(
+        'packages/thai_province_dropdown/assets/thai_amphures.json',
+      ),
+      rootBundle.loadString(
+        'packages/thai_province_dropdown/assets/thai_provinces.json',
       ),
     ]);
 

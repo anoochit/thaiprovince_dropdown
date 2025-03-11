@@ -65,10 +65,14 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
   Future<void> _loadAssets() async {
     log('load asset');
     final result = await Future.wait([
-      rootBundle.loadString('packages/thai_province/assets/thai_tambons.json'),
-      rootBundle.loadString('packages/thai_province/assets/thai_amphures.json'),
       rootBundle.loadString(
-        'packages/thai_province/assets/thai_provinces.json',
+        'packages/thai_province_dropdown/assets/thai_tambons.json',
+      ),
+      rootBundle.loadString(
+        'packages/thai_province_dropdown/assets/thai_amphures.json',
+      ),
+      rootBundle.loadString(
+        'packages/thai_province_dropdown/assets/thai_provinces.json',
       ),
     ]);
 
@@ -79,7 +83,6 @@ class _ThaiProvincesDropdownState extends State<ThaiProvincesDropdown> {
     });
   }
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Wrap(
