@@ -78,7 +78,7 @@ The underlying data for provinces, districts, subdistricts, and zip codes is sou
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:thai_province/thai_province.dart';
+import 'package:thai_province_dropdown/thai_province_dropdown.dart';
 
 void main() {
   runApp(const MyApp());
