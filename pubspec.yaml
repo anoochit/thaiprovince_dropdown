@@ -1,6 +1,6 @@
 name: thai_province_dropdown
 description: "A Flutter widget for easily selecting Thai provinces, districts (amphures), subdistricts (tambons), and zip codes."
-version: 0.0.2+2
+version: 0.0.2
 homepage: https://github.com/anoochit/thaiprovince_dropdown
 
 environment:
