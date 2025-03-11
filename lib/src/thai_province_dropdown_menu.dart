@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../thai_province.dart';
+import '../thai_province_dropdown.dart';
 import 'models/thai_amphures.dart';
 import 'models/thai_provinces.dart';
 import 'models/thai_tambons.dart';

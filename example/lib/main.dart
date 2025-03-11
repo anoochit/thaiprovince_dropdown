@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thai_province_dropdown/thai_province.dart';
+import 'package:thai_province_dropdown/thai_province_dropdown.dart';
 
 void main() {
   runApp(const MyApp());

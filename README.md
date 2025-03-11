@@ -37,7 +37,7 @@ The underlying data for provinces, districts, subdistricts, and zip codes is sou
 2.  **Import:**
 
     ```dart
-    import 'package:thai_province_dropdown/thai_province.dart';
+    import 'package:thai_province_dropdown/thai_province_dropdown.dart';
     ```
 
 3.  **Create a Controller:**
